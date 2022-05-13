@@ -1,4 +1,5 @@
 <template>
+ 
   <section>
     <coach-filter @change-filter="setFilters"></coach-filter>
   </section>
@@ -71,16 +72,25 @@ export default {
         career: true,
       },
       isLoading: false,
+      error: null,
     };
   },
   methods: {
+    handleError() {
+      this.error = null;
+    },
     setFilters(updatedFilters) {
       this.activeFilters = updatedFilters;
       console.log('method');
     },
     async loadCoaches() {
       this.isLoading = true;
-      await this.$store.dispatch('coaches/loadCoaches');
+
+      try {
+        await this.$store.dispatch('coaches/loadCoaches');
+      } catch (error) {
+        this.error = error.message || 'Something went wrong';
+      }
       this.isLoading = false;
     },
   },
