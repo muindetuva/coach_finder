@@ -34,7 +34,7 @@ export default {
     const coachId = context.rootGetters.userId;
 
     const response = await fetch(
-      `https://coach-finder-5a73f-default-rtdb.firebaseio.com/requests/${coachId}.json`
+      `https://coach-finder-5a73f-default-rtdb.firebaseio.com/requests/${coachId}.json?auth=${context.rootGetters.token}`
     );
 
     const responseData = await response.json();

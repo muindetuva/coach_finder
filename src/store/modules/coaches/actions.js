@@ -11,7 +11,7 @@ export default {
     };
 
     const response = await fetch(
-      `https://coach-finder-5a73f-default-rtdb.firebaseio.com/coaches/${userId}.json`,
+      `https://coach-finder-5a73f-default-rtdb.firebaseio.com/coaches/${userId}.json?auth=${context.rootGetters.token}`,
       {
         method: 'PUT',
         body: JSON.stringify(coachData),
