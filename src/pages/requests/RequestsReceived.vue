@@ -54,12 +54,14 @@ export default {
     handleError() {
       this.error = null;
     },
-    loadRequests() {
+    async loadRequests() {
       this.isLoading = true;
       try {
-        this.$store.dispatch('requests/fetchRequests');
+        await this.$store.dispatch('requests/fetchRequests');
       } catch (error) {
         this.error = error.message || 'Something failed';
+
+        console.log('caught error');
       }
       this.isLoading = false;
     },
